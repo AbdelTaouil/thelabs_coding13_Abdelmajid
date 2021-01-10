@@ -2,19 +2,23 @@
 	<div class="hero-section">
 		<div class="hero-content">
 			<div class="hero-center">
-				@foreach ($logo as $item)
-				@if ($item->section=="biglogo")
 					
-				<img src="img/{{$item->logo}}" alt=""><!-- Logo -->
+				<img src="{{asset("img/logoGrand.jpg")}}" alt=""><!-- Logo -->
+				@foreach ($titre as $item)
+					
+				@if ($item->section=="carousel")
+				<p>{{$item->titre}}</p>	
 				@endif
-			@endforeach
-				<p>Get your freebie template now!</p>
+				@endforeach
 			</div>
 		</div>
 		<!-- slider -->
 		<div id="hero-slider" class="owl-carousel">
-			<div class="item  hero-item" data-bg="img/01.jpg"></div>
-			<div class="item  hero-item" data-bg="img/02.jpg"></div>
+			@foreach ($image as $item)
+
+			<div class="item  hero-item" data-bg="img/{{$item->image}}"></div>
+				
+			@endforeach
 		</div>
 	</div>
 	<!-- Intro Section -->
@@ -28,7 +32,7 @@
 			<div class="container">
 				<div class="row">
 					@foreach ($dataSR as $item)
-						@if ($item->vip=="non")
+					
 							<div class="col-md-4 col-sm-6">
 								<div class="lab-card">
 									<div class="icon">
@@ -40,7 +44,6 @@
 									</div>
 								</div>
 							</div>
-						@endif
 					@endforeach
 				</div>
 			</div>
@@ -52,12 +55,13 @@
 		<div class="about-contant">
 			<div class="container">
 				<div class="section-title">
+
+					<h2>{!! $tab[1] !!}</h2>
+
 					@foreach ($titre as $item)
 					
 						@if ($item->section=="section1")
-						<h2>{{$item->titre}}</h2>
 							
-						
 					</div>
 					<div class="row">
 						<div class="col-md-6">
@@ -73,7 +77,7 @@
 					@foreach ($button as $item)
 					@if ($item->section=="browse")
 						
-					<a href="" class="site-btn">{{$item->text}}</a>
+					<a href="" class="site-btn">{{$item->button}}</a>
 					@endif
 					@endforeach
 				</div>
@@ -81,10 +85,13 @@
 				<div class="intro-video">
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2">
-							<img src="img/video.jpg" alt="">
-							<a href="https://www.youtube.com/watch?v=JgHfx2v9zOU" class="video-popup">
+							@foreach ($video as $item)
+							
+							<img src="img/{{$item->image}}" alt="">
+							<a href="{{$item->lien}}" class="video-popup">
 								<i class="fa fa-play"></i>
 							</a>
+							@endforeach
 						</div>
 					</div>
 				</div>
@@ -101,13 +108,7 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-4">
 					<div class="section-title left">
-						@foreach ($titre as $item)
-					
-						@if ($item->section=="avis")
-						<h2>{{$item->titre}}</h2>
-							
-						@endif
-					@endforeach
+						<h2>{!! $tab[2] !!}</h2>
 				
 					</div>
 					<div class="owl-carousel" id="testimonial-slide">
@@ -119,11 +120,11 @@
 							<p>{{$item->text}}</p>
 							<div class="client-info">
 								<div class="avatar">
-									<img src="img/{{$item->src}}" alt="">
+									<img src="img/{{$item->team->src}}" alt="">
 								</div>
 								<div class="client-name">
-									<h2>{{$item->nom}}</h2>
-									<p>{{$item->emploie->function}}</p>
+									<h2>{{$item->team->nom}}</h2>
+									<p>{{$item->team->emploie->function}}</p>
 								</div>
 							</div>
 						</div>

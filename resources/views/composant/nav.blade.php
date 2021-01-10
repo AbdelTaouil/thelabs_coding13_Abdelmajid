@@ -2,12 +2,9 @@
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="logo">
-			@foreach ($logo as $item)
-				@if ($item->section=="logo")
-					
-				<img src="img/{{$item->logo}}" alt=""><!-- Logo -->
-				@endif
-			@endforeach
+		
+			<img src="{{asset("img/logoPetit.jpg")}}" alt=""><!-- Logo -->
+			
 		</div>
 		<!-- Navigation -->
 		<div class="responsive"><i class="fa fa-bars"></i></div>

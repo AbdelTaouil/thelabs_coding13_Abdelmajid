@@ -14,7 +14,10 @@ class NavbarController extends Controller
      */
     public function index()
     {
-      
+        $navbar =  Navbar::all();
+        $counter = 1;
+
+        return view('backend/navbar', compact('navbar','counter'));
     }
 
     /**
@@ -55,9 +58,10 @@ class NavbarController extends Controller
      * @param  \App\Models\Navbar  $navbar
      * @return \Illuminate\Http\Response
      */
-    public function edit(Navbar $navbar)
+    public function edit(Request $request, $id)
     {
-        //
+        $navbar= Navbar::find($id);
+        return view('backend.show.edit-nav', compact('navbar'));
     }
 
     /**
@@ -67,9 +71,15 @@ class NavbarController extends Controller
      * @param  \App\Models\Navbar  $navbar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Navbar $navbar)
+    public function update(Request $request, Navbar $navbar, $id)
     {
-        //
+        $navbar= Navbar::find($id);
+
+        $navbar->titre=$request->titre;
+
+        $navbar->save();
+
+        return redirect()->back();
     }
 
     /**

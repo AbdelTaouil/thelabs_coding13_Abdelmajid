@@ -33,6 +33,29 @@
             @endif
         </div>
 
+         {{-- Emploie_id field --}}
+         <div class="input-group mb-3">
+            <select ype="text" name="emploie_id" class="form-control {{ $errors->has('emploie_id') ? 'is-invalid' : '' }}"
+                value="{{ old('emploie_id') }}" placeholder="{{ __('emploie') }}" autofocus>
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <option selected active>Ta fonction</option>
+      
+                    <option value="1">je suis bon</option>
+               
+                </div>
+            </div>
+      
+                
+              </select>
+
+            @if($errors->has('emploie_id'))
+                <div class="invalid-feedback">
+                    <strong>{{ $errors->first('emploie_id') }}</strong>
+                </div>
+            @endif
+        </div>
+
         {{-- Email field --}}
         <div class="input-group mb-3">
             <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"

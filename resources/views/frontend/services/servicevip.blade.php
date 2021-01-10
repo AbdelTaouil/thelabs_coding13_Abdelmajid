@@ -4,31 +4,28 @@
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="section-title">
-				@foreach ($titre as $item)
-					
-				@if ($item->section=="servicevip")
-				<h2>{{$item->titre}}</h2>
-					
-				@endif
-			@endforeach			</div>
+				<h2>{!! $tab[1] !!}</h2>
+		
+		</div>
 			<div class="row">
 				<!-- feature item -->
 				<div class="col-md-4 col-sm-4 features">
-					@foreach ($dataVIPD as $item)
-						
-
+					@foreach ($servicepage as $item)
+					@if ($limite <= 2 )
+					<p class="d-none">{{$limite++}}</p>
 						<div class="icon-box light left">
 							<div class="service-text">
 								<h2>{{$item->titre}}</h2>
 								<p>{{$item->text}}</p>
 							</div>
 							<div class="icon">
-								<i class="{{$item->logo}}"></i>
+								<i class="flaticon-002-caliper"></i>
 							</div>
 						</div>
-							
-						
-					@endforeach
+						@else
+
+					@endif
+				@endforeach
 				
 				</div>
 				<!-- Devices -->
@@ -40,20 +37,23 @@
 				<!-- feature item -->
 				<div class="col-md-4 col-sm-4 features">
 
-					 @foreach ($dataVIPR as $item)
-						
+					@foreach ($servicepage as $item)
+					<p class="d-none">{{$limite++}}</p>
+					@if ($limite >= 7 )
+                            <div class="icon-box light left">
+                                <div class="service-text">
+                                    <h2>{{$item->titre}}</h2>
+                                    <p>{{$item->text}}</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="flaticon-002-caliper"></i>
+                                </div>
+                            </div>
 
-						<div class="icon-box light">
-							<div class="icon">
-								<i class="{{$item->logo}}"></i>
-							</div>
-							<div class="service-text">
-								<h2>{{$item->titre}}</h2>
-								<p>{{$item->text}}</p>
-							</div>
-						</div>
-						
-					@endforeach
+                     @else
+                    
+                        @endif
+                    @endforeach
 			
 					
 				</div>
@@ -62,7 +62,7 @@
 				@foreach ($button as $item)
 					@if ($item->section=="browse")
 						
-					<a href="" class="site-btn">{{$item->text}}</a>
+					<a href="" class="site-btn">{{$item->button}}</a>
 					@endif
 					@endforeach
 			</div>

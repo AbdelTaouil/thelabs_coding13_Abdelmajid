@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -35,7 +36,13 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image=new Image;
+        $image->image=$request->file('image')->hashName();
+        $image->save();
+        $request->file('image')->storePublicly('img','public');
+        return redirect()->back();
+
+
     }
 
     /**
@@ -55,9 +62,12 @@ class ImageController extends Controller
      * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function edit(Image $image)
+    public function edit(Image $image, $id)
     {
-        //
+        $image= Image::find($id);
+
+        return view('backend.show.edit-carousel', compact('image'));
+
     }
 
     /**
@@ -67,9 +77,22 @@ class ImageController extends Controller
      * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Image $image)
+    public function update(Request $request, Image $image, $id)
     {
-        //
+        $image= Image::find($id);
+
+        $image->image=$request->file('image')->hashName();
+
+
+        $image->save();
+
+        Storage::disk('public')->delete('img/' . $image->image);
+
+        $request->file('image')->storePublicly('img','public');
+
+
+
+        return redirect()->back();
     }
 
     /**
@@ -78,8 +101,14 @@ class ImageController extends Controller
      * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Image $image)
+    public function destroy(Image $image, $id)
     {
-        //
+        $image = image::find($id);
+
+        $image->delete();
+        
+        Storage::disk('public')->delete('img/' . $image->image);
+
+        return redirect()->back();
     }
 }

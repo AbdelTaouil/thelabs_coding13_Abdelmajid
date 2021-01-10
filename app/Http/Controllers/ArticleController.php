@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Categorie;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -14,7 +18,12 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $article= Article::all();
+        $user= User::all();
+        $tag= Tag::all();
+        $categorie= Categorie::all();
+
+        return view('backend.redacteur', compact('article','user','tag','categorie'));
     }
 
     /**
@@ -35,7 +44,20 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article=new Article;
+        $article->date=$request->date;
+        $article->description=$request->description;
+        $article->titre=$request->titre;
+        $article->check=$request->check;
+        $article->src=$request->file('src')->hashName();
+        $article->user_id=Auth::user()->id;
+        $article->save();
+        $request->file('src')->storePublicly('img','public');
+        $article->tags()->syncWithoutDetaching($request->cats);
+        $article->categories()->syncWithoutDetaching($request->cat);
+   
+
+        return redirect()->back();
     }
 
     /**

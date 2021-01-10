@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Avi extends Model
 {
     use HasFactory;
-    public function emploie()
+    public function team()
     {
-        return $this->belongsTo('App\Models\Emploie', "emploie_id");
+        return $this->belongsTo('App\Models\team', "team_id");
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Button;
+use App\Models\Titre;
 use Illuminate\Http\Request;
 
 class ButtonController extends Controller
@@ -14,7 +15,12 @@ class ButtonController extends Controller
      */
     public function index()
     {
-        //
+        $titre =  Titre::all();
+        $counter = 1;
+        $button = Button::all();        
+
+        return view('backend.titre', compact('titre','counter', 'button'));
+
     }
 
     /**
@@ -55,10 +61,11 @@ class ButtonController extends Controller
      * @param  \App\Models\Button  $button
      * @return \Illuminate\Http\Response
      */
-    public function edit(Button $button)
+    public function edit(Button $button, $id)
     {
-        //
-    }
+        $button= Button::find($id);
+
+        return view('backend.show.edit-button', compact('button'));    }
 
     /**
      * Update the specified resource in storage.
@@ -67,9 +74,16 @@ class ButtonController extends Controller
      * @param  \App\Models\Button  $button
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Button $button)
+    public function update(Request $request, $id)
     {
-        //
+        $button= Button::find($id);
+
+        $button->button=$request->button;
+
+
+        $button->save();
+
+        return redirect()->back();
     }
 
     /**

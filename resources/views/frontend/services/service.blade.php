@@ -2,18 +2,12 @@
 <div class="services-section spad">
     <div class="container">
         <div class="section-title dark">
-            @foreach ($titre as $item)
-					
-						@if ($item->section=="service")
-						<h2>{{$item->titre}}</h2>
-							
-						@endif
-					@endforeach
+            <h2>{!! $tab[3] !!}</h2>
+
         </div>
         <div class="row">
             <!-- single service -->
             @foreach ($service as $item)
-                @if ($item->vip=="non")
                 <div class="col-md-4 col-sm-6">
                     <div class="service">
                         <div class="icon">
@@ -25,18 +19,18 @@
                         </div>
                     </div>
                 </div>
-                    
-                @endif
+            
             @endforeach
            
         </div>
+        <div class="text-center my-5">{{ $service->links()}}</div>
         <div class="text-center">
             @foreach ($button as $item)
 					@if ($item->section=="browse")
 						
-					<a href="" class="site-btn">{{$item->text}}</a>
+					<a href="" class="site-btn">{{$item->button}}</a>
 					@endif
-					@endforeach
+			@endforeach
         </div>
     </div>
 </div>

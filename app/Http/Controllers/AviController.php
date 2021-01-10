@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Avi;
+use App\Models\team;
 use Illuminate\Http\Request;
 
 class AviController extends Controller
@@ -14,7 +15,6 @@ class AviController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -35,7 +35,13 @@ class AviController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $avis=new Avi;
+        $avis->text=$request->text;
+        $avis->team_id=$request->team_id;
+
+        $avis->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -55,9 +61,12 @@ class AviController extends Controller
      * @param  \App\Models\Avi  $avi
      * @return \Illuminate\Http\Response
      */
-    public function edit(Avi $avi)
+    public function edit(Avi $avi,$id)
     {
-        //
+        $avis= Avi::find($id);
+        $team= team::all();
+
+        return view('backend.show.edit-avis', compact('avis','team'));
     }
 
     /**
@@ -67,9 +76,16 @@ class AviController extends Controller
      * @param  \App\Models\Avi  $avi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Avi $avi)
+    public function update(Request $request, Avi $avi, $id)
     {
-        //
+        $avis= Avi::find($id);
+
+        $avis->text=$request->text;
+        $avis->team_id=$request->team_id;
+
+        $avis->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -78,8 +94,14 @@ class AviController extends Controller
      * @param  \App\Models\Avi  $avi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Avi $avi)
+    public function destroy(Avi $avi, $id)
     {
-        //
+
+        $avis = Avi::find($id);
+
+        $avis->delete();
+
+        return redirect()->back();
+
     }
 }

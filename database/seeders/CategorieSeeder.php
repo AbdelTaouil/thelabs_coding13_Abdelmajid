@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class CategorieSeeder extends Seeder
 {
@@ -13,6 +14,33 @@ class CategorieSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('categories')->insert([
+            [
+                'categorie' => 'Vestibulum maximus',
+
+            ],
+            [
+                'categorie' => 'Nisi eu lobortis pharetra',   
+              
+            ],
+            [
+                'categorie' => 'Orci quam accumsan
+                ',
+             
+            ],
+            [
+                'categorie' => 'Auguen pharetra massa', 
+            
+            ],
+            [
+                'categorie' => 'Tellus ut nulla
+                ', 
+            
+            ],
+            [
+                'categorie' => 'Etiam egestas viverra', 
+            
+            ],
+        ]);
     }
 }

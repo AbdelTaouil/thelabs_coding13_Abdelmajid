@@ -252,42 +252,56 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
+        
         [
-            'text'    => 'multilevel',
+            'text'    => 'Catégories',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
+                    'text'    => 'Admin',
                     'url'     => '#',
+                    'icon_color' => 'blue',
                     'submenu' => [
                         [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
+                            'text' => 'Team/ Avis',
+                            'icon_color' => 'cyan',
+                            'url'  => '/team',
                         ],
                     ],
                 ],
                 [
-                    'text' => 'level_one',
-                    'url'  => '#',
+                    'text' => 'Redacteur',
+                    'url'  => '/redacteur',
+                    'icon_color' => 'blue',
                 ],
+                [
+                    'text'    => 'Acceuil',
+                    'url'     => '#',
+                    'icon_color' => 'blue',
+                    'submenu' => [
+                        [
+                            'text' => 'Navbar',
+                            'icon_color' => 'cyan',
+                            'url'  => '/navbar',
+                        ],
+                        [
+                            'text' => 'Image/video/Carousel',
+                            'icon_color' => 'cyan',
+                            'url'  => '/logo',
+                        ],
+                        [
+                            'text' => 'Titre-Sous-titre/button',
+                            'icon_color' => 'cyan',
+                            'url'  => '/titre',
+                        ],
+                        [
+                            'text' => 'Service',
+                            'icon_color' => 'cyan',
+                            'url'  => '/service',
+                        ],
+                    ],
+                ],
+               
             ],
         ],
         ['header' => 'labels'],

@@ -2,7 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Button;
+use App\Models\Categorie;
+use App\Models\Footer;
+use App\Models\Logo;
+use App\Models\Navbar;
+use App\Models\Service;
 use App\Models\Tag;
+use App\Models\Titre;
+use App\Models\User;
+use Intervention\Image\ImageManagerStatic;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -14,7 +25,27 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        
+        $titre =  Titre::all();
+        $titres =  Navbar::all();
+        $logo = Logo::all();
+        $button = Button::all();
+        $service = Service::all();
+        $footer = Footer::all();
+        $article = Article::all();
+        $tag = Tag::all();
+        $categorie = Categorie::all();
+
+        $tab = [];
+
+        foreach($titre as $title){
+            $str = Str::of($title->titre)->replace('(', '<span>');
+            $str2 = Str::of($str)->replace(')','</span>');
+            array_push($tab, $str2);
+        }
+        
+
+        return view('template.blogbis', compact('titre','tag','categorie','article','tab','titres','logo','button','service','footer'));
     }
 
     /**

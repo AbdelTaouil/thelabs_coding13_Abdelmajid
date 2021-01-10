@@ -40,9 +40,9 @@
 								@foreach ($button as $item)
 									@if ($item->section=="contact")
 										
-									<button class="site-btn">{{$item->text}}</button>
+										<button class="site-btn">{{$item->button}}</button>
 									@endif
-									@endforeach
+								@endforeach
 								
 							</div>
 						</div>

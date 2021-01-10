@@ -4,40 +4,65 @@
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="section-title">
-				@foreach ($titre as $item)
-					
-						@if ($item->section=="team")
-						<h2>{{$item->titre}}</h2>
-							
-						@endif
-					@endforeach
+				<h2>{!! $tab[4] !!}</h2>
+
 				
 			</div>
 			<div class="row">
-				<!-- single member -->
-				<div class="col-sm-4">
-					<div class="member">
-						<img src="img/team/1.jpg" alt="">
-						<h2>Christinne Williams</h2>
-						<h3>Project Manager</h3>
-					</div>
-				</div>
-				<!-- single member -->
-				<div class="col-sm-4">
-					<div class="member">
-						<img src="img/team/2.jpg" alt="">
-						<h2>Christinne Williams</h2>
-						<h3>Junior developer</h3>
-					</div>
-				</div>
-				<!-- single member -->
-				<div class="col-sm-4">
-					<div class="member">
-						<img src="img/team/3.jpg" alt="">
-						<h2>Christinne Williams</h2>
-						<h3>Digital designer</h3>
-					</div>
-				</div>
+
+				@foreach ($teams as $item)
+	
+					@if ($item->emploie->function != 'CEO Company' && $ok != 2)
+	
+						<!-- single member -->
+						<div class="col-sm-4">
+							<div class="member">
+								<img src="{{asset('img/'.$item->src)}}" alt="">
+								<h2>{{$item->nom}}</h2>
+								<h3>{{$item->emploie->function}}</h3>
+							</div>
+						</div>
+						<div class="d-none">{{$ok++}}</div>
+						<div class="d-none">{{$counter = $item->id}}</div>
+	
+					@endif
+				@endforeach
+	
+				@foreach ($teams  as $item)
+	
+					@if ($item->emploie->function == 'CEO Company')
+	
+						<div class="col-sm-4">
+							<div class="member">
+								<img src="{{asset('img/'.$item->src)}}" alt="">
+								<h2>{{$item->nom}}</h2>
+								<h3>{{$item->emploie->function}}</h3>
+							</div>
+						</div>
+	
+	
+						@endif
+	
+						@endforeach
+	
+						<div class="d-none">{{$ok=1}}</div>
+						@foreach ($teams as $item)
+	
+						@if ($item->emploie->function != 'CEO Company' && $item->id != $counter && $ok != 2)
+	
+						<div class="col-sm-4">
+							<div class="member">
+								<img src="{{asset('img/'.$item->src)}}" alt="">
+								<h2>{{$item->nom}}</h2>
+								<h3>{{$item->emploie->function}}</h3>
+							</div>
+						</div>
+	
+						<div class="d-none">{{$ok++}}</div>
+					@endif
+	
+	
+				@endforeach
 			</div>
 		</div>
 	</div>
@@ -63,7 +88,7 @@
 						@foreach ($button as $item)
 					@if ($item->section=="browse")
 						
-					<a href="" class="site-btn btn-2">{{$item->text}}</a>
+					<a href="" class="site-btn btn-2">{{$item->button}}</a>
 					@endif
 					@endforeach
 					</div>

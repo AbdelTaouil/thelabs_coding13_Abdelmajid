@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,11 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $service= Service::all();
+    
+
+        return view('backend.service', compact('service'));
+
     }
 
     /**
@@ -35,8 +40,17 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $service=new Service;
+        $service->logo=$request->logo;
+        $service->titre=$request->titre;
+        $service->text=$request->text;
+
+        $service->save();
+
+        return redirect()->back();
     }
+
+  
 
     /**
      * Display the specified resource.
@@ -55,9 +69,12 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit(Service $service, $id)
     {
-        //
+        $service= Service::find($id);
+        $services= Service::all();
+
+        return view('backend.show.edit-service', compact('service','services'));
     }
 
     /**
@@ -67,9 +84,18 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, Service $service, $id)
     {
-        //
+
+        $service= Service::find($id);
+
+        $service->logo=$request->logo;
+        $service->titre=$request->titre;
+        $service->text=$request->text;
+
+        $service->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -78,8 +104,12 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(Service $service, $id)
     {
-        //
+        $service = Service::find($id);
+
+        $service->delete();
+
+        return redirect()->back();
     }
 }

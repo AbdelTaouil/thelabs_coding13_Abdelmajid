@@ -16,17 +16,17 @@ class ButtonSeeder extends Seeder
     {
         DB::table('buttons')->insert([
             [
-                'text' => 'BROWSE',
+                'button' => 'BROWSE',
                 'section' => 'browse',
 
             ],
             [
-                'text' => 'send',
+                'button' => 'send',
                 'section' => 'contact',
 
             ],
             [
-                'text' => 'NEWSLETTER',
+                'button' => 'NEWSLETTER',
                 'section' => 'newsletter',
 
             ],

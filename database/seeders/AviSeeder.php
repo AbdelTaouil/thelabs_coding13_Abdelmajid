@@ -18,66 +18,47 @@ class AviSeeder extends Seeder
             [
                 'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
 
-                'src' => 'avatar/01.jpg',
-                
-                'nom' => 'Oussama le paysan',
-
-                'emploie_id' => '1',
+                'team_id' => '1',
 
 
             ],
             [
                 'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
 
-                'src' => 'avatar/02.jpg',
-                
-                'nom' => 'Zidane le rifs',
 
-                'emploie_id' => '2',
+                'team_id' => '2',
 
 
             ],
             [
                 'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
 
-                'src' => 'avatar/01.jpg',
-                
-                'nom' => 'Michael Smith',
 
-                'emploie_id' => '2',
+                'team_id' => '3',
 
 
             ],
             [
                 'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
 
-                'src' => 'avatar/02.jpg',
-                
-                'nom' => 'Oussama le paysan',
 
-                'emploie_id' => '2',
+                'team_id' => '4',
 
 
             ],
             [
                 'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
 
-                'src' => 'avatar/01.jpg',
-                
-                'nom' => 'Dina EL Aakel',
 
-                'emploie_id' => '4',
+                'team_id' => '5',
 
 
             ],
             [
                 'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
 
-                'src' => 'avatar/02.jpg',
-                
-                'nom' => 'Hicham Majdi',
 
-                'emploie_id' => '3',
+                'team_id' => '6',
 
             ],
         ]);

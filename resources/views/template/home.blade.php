@@ -28,17 +28,13 @@
     <title>Home</title>
 </head>
 <body>
-
+	
 	@include('composant.nav')
     @include('frontend.home.section1')
     @include('frontend.services.service')
     @include('frontend.home.section2')
     @include('frontend.contact.contact')
     @include('composant.footer')
-
-
-
-
 
     
    	<!--====== Javascripts & Jquery ======-->

@@ -16,14 +16,9 @@ class LogoSeeder extends Seeder
     {
         DB::table('logos')->insert([
             [
-                'logo' => 'logo.png',
+                'logo' => 'big-logo.png',
                 'section' => 'logo',
 
-            ],
-            [
-                'logo' => 'big-logo.png',   
-                'section' => 'biglogo',
-   
             ],
         ]);
     }

@@ -12,7 +12,7 @@
 						@foreach ($button as $item)
 									@if ($item->section=="newsletter")
 										
-									<button class="site-btn btn-2">{{$item->text}}</button>
+									<button class="site-btn btn-2">{{$item->button}}</button>
 									@endif
 									@endforeach
 								
