@@ -21,13 +21,16 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             FooterSeeder::class,
             EmploieSeeder::class,
-            TeamSeeder::class,
-            AviSeeder::class,
             RoleSeeder::class,
             ImageSeeder::class,
             VideoSeeder::class,
             CategorieSeeder::class,
             TagSeeder::class,
+            AdresseSeeder::class,
+            TeamSeeder::class,
+            AviSeeder::class,
+            ArticleSeeder::class,
+
         ]);
     }
 }

@@ -54,7 +54,7 @@
 
 	@include('composant.banner')
 
-    @include('frontend.blog.article')
+    @include('frontend.blog.articlebis')
     @include('frontend.services.newsletter')
     @include('composant.footer')
 

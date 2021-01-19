@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Newsletter;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class NewsletterController extends Controller
@@ -14,9 +16,11 @@ class NewsletterController extends Controller
      */
     public function index()
     {
-        //
+        $newsletter= Newsletter::all();
+        $user = User::all();
+        $counter=1;
+        return view('backend.newsletter', compact('newsletter','user','counter'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +39,7 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
 
     /**
@@ -78,8 +82,12 @@ class NewsletterController extends Controller
      * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Newsletter $newsletter)
+    public function destroy(Newsletter $newsletter,$id)
     {
-        //
+        $newsletter = Newsletter::find($id);
+
+        $newsletter->delete();
+
+        return redirect()->back();
     }
 }

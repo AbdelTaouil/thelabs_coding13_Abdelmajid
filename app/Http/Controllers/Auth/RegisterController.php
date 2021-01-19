@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserHasRegister;
 use App\Http\Controllers\Controller;
+use App\Models\Newsletter;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -51,7 +53,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'emploie_id' => ['required', 'string', 'max:255'],
+            'image' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -65,11 +67,35 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $mail = Newsletter::all();
+        $index = 0;
+
+        foreach($mail as $element){
+            if($element->email == $data['email']){
+               $index = $element->id; 
+            break;
+            }else{
+                $index = -1;
+            }
+        }
+
+        if($index === -1){
+                $newEntry = new Newsletter();
+                $newEntry->email = $data['email'];
+                $newEntry->save();
+        }
+
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'emploie_id' => $data['emploie_id'],
+            'image' => $data["image"]->hashName(),
+            $data["image"]->storePublicly('img','public'),
             'password' => Hash::make($data['password']),
         ]);
+
+        event(new UserHasRegister($user));
+
+
+        return $user;
     }
 }

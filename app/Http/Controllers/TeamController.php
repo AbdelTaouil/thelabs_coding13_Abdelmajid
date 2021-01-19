@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Avi;
 use App\Models\Emploie;
 use App\Models\team;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,11 +18,13 @@ class TeamController extends Controller
      */
     public function index()
     {
+
         $team= team::all();
         $avis= Avi::all();
         $emploie = Emploie::all();
+        $user = User::all();
 
-        return view('backend.team', compact('team', 'avis','emploie'));
+        return view('backend.team', compact('team', 'avis','emploie','user'));
 
     }
 
@@ -44,12 +47,11 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $team=new Team;
-        $team->src=$request->file('src')->hashName();
-        $team->nom=$request->nom;
+        $this->authorize('webmaster');
+        $team->user_id=$request->user_id;
         $team->emploie_id=$request->emploie_id;
 
         $team->save();
-        $request->file('src')->storePublicly('img','public');
 
         return redirect()->back();
 
@@ -76,8 +78,10 @@ class TeamController extends Controller
     {
         $team= team::find($id);
         $emploie= Emploie::all();
+        $user = User::all();
 
-        return view('backend.show.edit-team', compact('team','emploie'));
+
+        return view('backend.show.edit-team', compact('team','emploie','user'));
     }
 
     /**
@@ -91,17 +95,10 @@ class TeamController extends Controller
     {
         $team= team::find($id);
 
-        $team->src=$request->file('src')->hashName();
-        $team->nom=$request->nom;
+        $team->user_id=$request->user_id;
         $team->emploie_id=$request->emploie_id;
 
         $team->save();
-
-        Storage::disk('public')->delete('img/' . $team->src);
-
-        $request->file('src')->storePublicly('img','public');
-
-
 
         return redirect()->back();
     }
@@ -115,10 +112,6 @@ class TeamController extends Controller
     public function destroy(team $team, $id)
     {
          $team = team::find($id);
-
-        $team->delete();
-        
-        Storage::disk('public')->delete('img/' . $team->src);
 
         return redirect()->back();
     }

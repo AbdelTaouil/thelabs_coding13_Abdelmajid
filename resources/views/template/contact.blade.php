@@ -51,9 +51,14 @@
 		</div>
 		<!-- Page banner end-->
 
-		<!-- Google map -->
-		<div class="map" id="map-area"></div>
 		
+	<!-- Google map -->
+	@foreach ($footer as $item)
+		
+	<iframe width="100%" height="600vh" src="https://maps.google.com/maps?q={{$item->adresse}}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"></iframe>
+	@endforeach
+
+
     @include('frontend.contact.contact')
     @include('composant.footer')
 

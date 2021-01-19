@@ -18,8 +18,8 @@ class FooterSeeder extends Seeder
             [
                 'text' => '2017 All rights reserved. Designed by',
                 'motcouleur' => 'Colorlib',
-                'adresse' => 'C/ Libertad, 34',
-                'codepostal' => '05200 Arévalo',
+                'adresse' => 'Rue vonck',
+                'codepostal' => '1210 ',
                 'numeros' => '0034 37483 2445 322',
                 'email' => 'hello@company.com'
                 

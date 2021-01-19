@@ -13,12 +13,12 @@
 				@foreach ($teams as $item)
 	
 					@if ($item->emploie->function != 'CEO Company' && $ok != 2)
-	
+					{{dd($item)}}
 						<!-- single member -->
 						<div class="col-sm-4">
 							<div class="member">
-								<img src="{{asset('img/'.$item->src)}}" alt="">
-								<h2>{{$item->nom}}</h2>
+								<img src="{{asset('img/'.$item->users->image)}}" alt="">
+								<h2>{{$item->users->name}}</h2>
 								<h3>{{$item->emploie->function}}</h3>
 							</div>
 						</div>
@@ -34,8 +34,8 @@
 	
 						<div class="col-sm-4">
 							<div class="member">
-								<img src="{{asset('img/'.$item->src)}}" alt="">
-								<h2>{{$item->nom}}</h2>
+								<img src="{{asset('img/'.$item->users->image)}}" alt="">
+								<h2>{{$item->users->name}}</h2>
 								<h3>{{$item->emploie->function}}</h3>
 							</div>
 						</div>
@@ -52,8 +52,8 @@
 	
 						<div class="col-sm-4">
 							<div class="member">
-								<img src="{{asset('img/'.$item->src)}}" alt="">
-								<h2>{{$item->nom}}</h2>
+								<img src="{{asset('img/'.$item->users->image)}}" alt="">
+								<h2>{{$item->users->name}}</h2>
 								<h3>{{$item->emploie->function}}</h3>
 							</div>
 						</div>

@@ -244,15 +244,14 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => '/profil',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'MailBox',
+            'url'  => '/mailbox',
+            'icon' => 'fas fa-envelope-open-text',
         ],
-        
         [
             'text'    => 'Catégories',
             'icon'    => 'fas fa-fw fa-share',
@@ -272,6 +271,11 @@ return [
                 [
                     'text' => 'Redacteur',
                     'url'  => '/redacteur',
+                    'icon_color' => 'blue',
+                ],
+                [
+                    'text' => 'Newsletter',
+                    'url'  => '/Newsletter',
                     'icon_color' => 'blue',
                 ],
                 [
@@ -298,6 +302,11 @@ return [
                             'text' => 'Service',
                             'icon_color' => 'cyan',
                             'url'  => '/service',
+                        ],
+                        [
+                            'text' => 'Footer/contact',
+                            'icon_color' => 'cyan',
+                            'url'  => 'modifier-footer/1',
                         ],
                     ],
                 ],

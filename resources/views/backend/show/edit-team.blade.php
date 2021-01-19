@@ -24,14 +24,20 @@
         <div class="container mt-5">
         <div class="form-row">
             <div class="form-group col-md-6">
-            <img width="200px" src="{{asset("img/$team->src")}}" alt=""><!-- Logo -->
+            <img width="200px" src="(img/. {{$team->users->image}})}}" alt="">
+            <!-- Logo -->
 
         </div>
 
             <div class="form-group col-md-6">
-                <label for="imagee">Votre photo</label>
-                <input type="file" value="{{$team->src}}" name="src" id="imagee">
-                <input type="text" value="{{$team->nom}}" class="form-control" id="inputCity" name="nom">
+                <select class="form-control col-md-6" name="user_id">
+
+                    @foreach ($user as $item)
+                        <option value="{{$item->id}}">{{$item->name}}</option>
+                    @endforeach
+                    
+                </select>
+
                 <select class="form-control col-md-6" name="emploie_id">
 
                     @foreach ($emploie as $item)

@@ -24,9 +24,10 @@ class ContactController extends Controller
         $logo = Logo::all();
         $button = Button::all();
         $footer = Footer::all();
+        $contact = Contact::all();
 
 
-        return view('template.contact', compact('titre','titres','logo', 'button','footer'));
+        return view('template.contact', compact('titre','titres','logo', 'button','footer','contact'));
     }
 
     /**

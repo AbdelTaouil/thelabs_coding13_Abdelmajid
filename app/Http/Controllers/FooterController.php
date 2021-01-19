@@ -14,7 +14,11 @@ class FooterController extends Controller
      */
     public function index()
     {
-        //
+        $footer =  Footer::all();
+        $counter=1;
+     
+        return view('backend.contact-footer', compact('footer'));
+
     }
 
     /**
@@ -55,9 +59,10 @@ class FooterController extends Controller
      * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Footer $footer)
+    public function edit(Footer $footer,$id)
     {
-        //
+        $footer= Footer::find($id);
+        return view('backend.show.edit-contact', compact('footer'));
     }
 
     /**
@@ -67,9 +72,20 @@ class FooterController extends Controller
      * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Footer $footer)
+    public function update(Request $request, Footer $footer, $id)
     {
-        //
+        $footer= Footer::find($id);
+
+        $footer->text=$request->text;
+        $footer->motcouleur=$request->motcouleur;
+        $footer->adresse=$request->adresse;
+        $footer->codepostal=$request->codepostal;
+        $footer->numeros=$request->numeros;
+        $footer->email=$request->email;
+
+        $footer->save();
+
+        return redirect()->back();
     }
 
     /**

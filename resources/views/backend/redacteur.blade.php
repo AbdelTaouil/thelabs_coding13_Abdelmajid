@@ -25,23 +25,15 @@
 
           <div class="col-md-12">
             <div class="card-body">
-                <label for="inputCity">Personne qui note :</label>
-                <select class="form-control" name="user_id">
-                @foreach ($user as $item)
-                <option value="">{{$item->name}}</option>
-                @endforeach
-            </select>
+            
             <div class="form-row">
 
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12 mt-3">
                     <label for="inputCity">titre:</label>
                     <input type="text" value="" class="form-control" id="inputCity" name="titre">
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="inputCity">date:</label>
-                    <input type="date" value="" class="form-control" id="inputCity" name="date">
-                </div>
+
             </div>
             <div class="form-row">
 
@@ -50,7 +42,7 @@
                     <textarea class="form-control" rows="3" placeholder="Enter ..." name="description"></textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <div class="container text-light">
+                    <div class="container">
                         <input type="file" name="src" id="imagee">
                     </div>
                 </div>
@@ -63,15 +55,14 @@
             <div class="form-row">
                 <div class="form-group m-3">
                   <label>Select Multiple</label>
-                  <select multiple="" class="form-control" name="cats[]">
-                @foreach ($tag as $item)
-            
+                    <select multiple="" class="form-control" name="cats[]">
+                            @foreach ($tag as $item)
 
-                                  <option value="{{$item->id}}"  {{ in_array($item->id, old('cats') ?: []) ? 'selected' : '' }}>{{$item->tag}}</option>
-                                 
-                                  @endforeach
-                                </select>
-                              </div>
+                                <option value="{{$item->id}}"  {{ in_array($item->id, old('cats') ?: []) ? 'selected' : '' }}>{{$item->tag}}</option>
+
+                            @endforeach
+                    </select>
+                </div>
                 
                 <div class="form-group m-3">
                   <label>Select Multiple</label>

@@ -14,7 +14,7 @@
 @section('auth_header', __('adminlte::adminlte.register_message'))
 
 @section('auth_body')
-    <form action="{{ $register_url }}" method="post">
+    <form action="{{ $register_url }}" enctype="multipart/form-data" method="post">
         {{ csrf_field() }}
 
         {{-- Name field --}}
@@ -32,30 +32,23 @@
                 </div>
             @endif
         </div>
-
-         {{-- Emploie_id field --}}
-         <div class="input-group mb-3">
-            <select ype="text" name="emploie_id" class="form-control {{ $errors->has('emploie_id') ? 'is-invalid' : '' }}"
-                value="{{ old('emploie_id') }}" placeholder="{{ __('emploie') }}" autofocus>
+        {{-- image field --}}
+        <div class="input-group mb-3">
+            <input type="file" name="image" class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}"
+                   value="{{ old('image') }}" placeholder="{{ __('Photo de profil') }}" autofocus>
             <div class="input-group-append">
                 <div class="input-group-text">
-                    <option selected active>Ta fonction</option>
-      
-                    <option value="1">je suis bon</option>
-               
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
                 </div>
             </div>
-      
-                
-              </select>
-
-            @if($errors->has('emploie_id'))
+            @if($errors->has('image'))
                 <div class="invalid-feedback">
-                    <strong>{{ $errors->first('emploie_id') }}</strong>
+                    <strong>{{ $errors->first('image') }}</strong>
                 </div>
             @endif
         </div>
-
+        
+     
         {{-- Email field --}}
         <div class="input-group mb-3">
             <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"

@@ -5,12 +5,14 @@
             <div class="col-md-8 col-sm-7 blog-posts">
                 <!-- Post item -->
                 @foreach ($article as $item)
+                @if ($item->check=="oui")
                     
                 <div class="post-item">
                     <div class="post-thumbnail">
                         <img src="img/{{$item->src}}" alt="">
                         <div class="post-date">
-                            <h3>{{$item->date}}</h3>
+                            <h2>{{$item->created_at->format('d')}}</h2>
+                            <h3>{{$item->created_at->format('M')}} {{$item->created_at->format('Y')}}</h3>
                         </div>
                     </div>
                     <div class="post-content">
@@ -18,33 +20,45 @@
                         <div class="post-meta">
                             <a href="">
                                 @foreach ($item->tags as $elem)
-                                {{$elem->tag}}
+                                  {{$elem->tag}}
                                 @endforeach
                             </a>
                             <a href="">
                                 @foreach ($item->categories as $elem)
-                                {{$elem->categorie}}
+                                 {{$elem->categorie}}
                                 @endforeach
                             </a>
-                            <a href="">2 Comments</a>
-                        </div>
-                        <p>{{$item->description}}</p>
+                            <div class="d-none">{{$a=0}}</div>
 
-                        <a href="/articlebis" class="read-more">Read More</a>
+                            @foreach ($commentaire as $elem)
+                                @if ($elem->article_id == $item->id)
+                                    <div class="d-none">{{$a++}}</div>
+                                @else
+                                @endif
+
+                            @endforeach
+                    
+                            <a href="">Comment ({{$a}})</a>
+                        </div>
+                        <p> {{Str::limit($item->description, 300, ' ...') }} </p>
+
+                        <a href="/commentaire/{{$item->id}}" class="read-more">Read More</a>
                     </div>
                 </div>
+                @endif
                 @endforeach
 
             </div>
-            <!-- Sidebar area -->
-            <div class="col-md-4 col-sm-5 sidebar">
-                <!-- Single widget -->
-                <div class="widget-item">
-                    <form action="#" class="search-form">
-                        <input type="text" placeholder="Search">
-                        <button class="search-btn"><i class="flaticon-026-search"></i></button>
-                    </form>
-                </div>
+           <!-- Sidebar area -->
+           <div class="col-md-4 col-sm-5 sidebar">
+            <!-- Single widget -->
+            <div class="widget-item">
+            <form action="/search" method="get" class="search-form">
+
+                <input type="text" name="query" placeholder="Search">
+                <button type="submit" class="search-btn"><i class="flaticon-026-search"></i></button>
+            </form>
+        </div>
                 <!-- Single widget -->
                 <div class="widget-item">
                     <h2 class="widget-title">Categories</h2>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Button;
 use App\Models\Categorie;
+use App\Models\Commentaire;
 use App\Models\Footer;
 use App\Models\Logo;
 use App\Models\Navbar;
@@ -15,6 +16,7 @@ use App\Models\User;
 use Intervention\Image\ImageManagerStatic;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
@@ -35,6 +37,8 @@ class TagController extends Controller
         $article = Article::all();
         $tag = Tag::all();
         $categorie = Categorie::all();
+        $comm = Commentaire::all();
+
 
         $tab = [];
 
@@ -45,7 +49,7 @@ class TagController extends Controller
         }
         
 
-        return view('template.blogbis', compact('titre','tag','categorie','article','tab','titres','logo','button','service','footer'));
+        return view('template.blogbis', compact('titre','tag','categorie','article','tab','titres','logo','button','service','footer','comm'));
     }
 
     /**
@@ -66,7 +70,7 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+     
     }
 
     /**
@@ -86,9 +90,29 @@ class TagController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit(Tag $tag,$id)
     {
-        //
+        $article= Article::find($id);
+        $titre =  Titre::all();
+        $titres =  Navbar::all();
+        $logo = Logo::all();
+        $button = Button::all();
+        $service = Service::all();
+        $footer = Footer::all();
+        $tag = Tag::all();
+        $categorie = Categorie::all();
+        $commentaire = Commentaire::all();
+        $tour = 1;
+
+        $tab = [];
+
+        foreach($titre as $title){
+            $str = Str::of($title->titre)->replace('(', '<span>');
+            $str2 = Str::of($str)->replace(')','</span>');
+            array_push($tab, $str2);
+        }
+
+        return view('template.blogbis', compact('titre','tag','categorie','article','tab','titres','logo','button','service','footer','commentaire','tour'));
     }
 
     /**
